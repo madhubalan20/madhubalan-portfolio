@@ -24,14 +24,6 @@ https://www.tooplate.com/view/2147-titan-folio
     --text-tertiary: rgba(255, 255, 255, 0.6);
 }
 
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    /* 🚫 Prevent horizontal scroll */
-}
-
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background: linear-gradient(135deg, #0a0a0f 0%, #151520 25%, #1a1a2e 50%, #16213e 75%, #0f3460 100%);
@@ -314,13 +306,13 @@ section {
 
 /* Animated background elements */
 .hero-bg-animation {
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     overflow: hidden;
     z-index: 1;
-    position: relative;
 }
 
 .floating-shape {
@@ -1980,35 +1972,7 @@ footer {
 }
 
 /* 🌟 Chat Popup Box */
-
-.chat-widget {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    max-width: calc(100% - 40px);
-}
-
 .chat-popup {
-    position: absolute;
-    bottom: 70px;
-    right: 0;
-    background: #fff;
-    width: 280px;
-    max-width: 90vw;
-    /* 📱 Make responsive */
-    border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
-    display: none;
-    flex-direction: column;
-    padding: 15px;
-    z-index: 10000;
-}
-
-/* .chat-popup {
     position: fixed;
     bottom: 95px;
     right: 25px;
@@ -2021,7 +1985,7 @@ footer {
     flex-direction: column;
     overflow: hidden;
     animation: fadeIn 0.4s ease;
-} */
+}
 
 @keyframes fadeIn {
     from {
@@ -2157,8 +2121,61 @@ button:hover~.cursor-outline {
     box-shadow: 0 0 35px rgba(0, 123, 255, 0.7);
 }
 
-section, .container {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  box-sizing: border-box;
+/* ===============================================
+   🔧 MOBILE NAVBAR + WIDTH FIX
+   =============================================== */
+
+@media (max-width: 768px) {
+
+    /* ✅ Prevent horizontal scroll on mobile */
+    html, body {
+        overflow-x: hidden;
+    }
+
+    /* ✅ Ensure all containers fit inside screen */
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* ✅ Navbar adjustments */
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    .navbar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .navbar a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+
+    /* ✅ Make icons visible */
+    .navbar i,
+    .footer-credit-icon i {
+        font-size: 18px;
+        display: inline-block;
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+/* Extra safety for very small screens (≤480px) */
+@media (max-width: 480px) {
+    .navbar a {
+        font-size: 15px;
+        padding: 6px 8px;
+    }
 }
